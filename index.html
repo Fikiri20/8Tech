@@ -6,384 +6,7 @@
         <title>8Tech Solutions</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-        <style>
-            *{
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-family: sans-serif;
-            }
-
-            body{
-                min-height: 100vh;
-                background: #000;
-            }
-
-            .header{
-                background: #ffa200;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                padding: 5px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                z-index: 100;
-            }
-
-            .header::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%; 
-                background: rgba(0, 0, 0, .1);
-                backdrop-filter: blur(50px);
-                z-index: -1;
-            }
-
-            .header::after {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(225, 225, 225, .4), transparent);
-                transition: .5s;
-            }
-
-            .header:hover::after {
-                left: 100%;
-            }
-
-            .logo{
-                
-                background: #000;
-                color: #fff;
-                text-decoration: none;
-                font-weight: 700;
-                border-radius: 10px;
-                padding: 15px 20px;
-            }
-
-                
-           .logo h2{ 
-      font-family:serif;
-     color: #fff;
-   font-size:22px ;
-    color:transparent;
-    -webkit-text-stroke:1px #fff;
-    background:url(J.png);
-     -webkit-background-clip:text;
-    background-position:0 0;
-    animation : back 10s linear infinite;
-  }
-  @keyframes back{
-    100%{
-  background-position:200px 0;
-    }
-  }
-
-
-            .navbar a{
-                font-size: 1.15rem;
-                color: #fff;
-                text-decoration: none;
-                font-weight: 500;
-                margin-right: 2.5rem;
-            }
-
-            #check{
-                display: none;
-            }
-            .icons{
-                position: absolute;
-                right: 5%;
-                font-size: 1.8rem;
-                color: #fff;
-                cursor: pointer;
-                display: none;
-            }
-
-            @media(max-width:1000px) {
-                .header {
-                    padding: 5px;
-                }
-            }
-
-            @media (max-width: 1058px) {
-                .icons {
-                    display: inline-flex;
-                }
-
-                #check:checked~.icons #menu-icon {
-                    display: none;
-                }
-
-                .icons #close-icon {
-                    display: none;
-                }
-
-                #check:checked~.icons #close-icon {
-                    display: block;
-                }
-
-                .navbar {
-                    background: #ffa200;
-                    position: absolute;
-                    top: 100%;
-                    left: 0;
-                    width: 100%;
-                    height: 0;
-                    backdrop-filter: blur(50px);
-                    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
-                    overflow: hidden;
-                    transition: .3s ease;
-                    border-radius: 0 0 10px 10px;
-                }
-
-                #check:checked~.navbar {
-                    height: 13rem;
-                }
-
-                .navbar a {
-                    display: block;
-                    font-size: 1.1rem;
-                    margin: 1.5rem 0;
-                    text-align: center;
-                    transform: translateY(-50px);
-                    opacity: 0;
-                    transition: .3s ease;
-                }
-
-                #check:checked~.navbar a {
-                    transform: translateY(0);
-                    opacity: 1;
-                    transition-delay: calc(.15s * var(--i));
-                }
-            }
-
-
-            .search-container{
-  text-align: center;
-}
-.search-box{
-    margin-top: 20vh;
-  padding: 10px 15px;
-  width: 50%;
-  max-width: 500px;
-  border:none;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.search-btn{
-  padding: 10px 20px;
-  background-color: transparent;
-  color: #fff;
-  border:  2px solid #ffa200;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.search-btn:hover{
-  background-color: #ffa200;
-  color: #000;
-}
-
-.log{
-    text-align: center;
-  }
-
-  .log img{
-    width:200px;
-    margin-top: 10vh;
-    margin-bottom: 8vh;
-  }
-
-  .scroll-container {
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 10px 0;
-  margin: 10px 10px;
-}
-
-.scroll-container::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Webkit browsers */
-}
-
-.scroll-container img {
-  border-radius: 10px;
-  margin-right: 10px;
-  max-height: 100px; /* Adjust the height as needed */
-  transition: transform 0.5s ease;
-}
-
-.scroll-container img:hover {
-  transform: scale(1.1); /* Zoom effect on hover */
-}
-
-#sepa {
-   
- h2, a,a:hover,a:active,a:focus {
-	display:inline-block;
-	text-decoration:none;
-  color: #ffa200;
-	padding:0;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-h1,h2,h3,h4,h5,h6 { 
-	margin: 0;
-	color:#000;
-    font-size: 18px;
-    font-weight: 500;
-    text-transform: capitalize;
-    text-decoration: none;
-}
-p {
-	margin: 0;
-	color:#000;
-	font-size:14px;
-    line-height: 1.8;
-    text-transform: initial;
-}
-img{
-  border:none;
-  max-width:100%; 
-  height:auto;
-  border-radius: 10px 10px 0 0;
-}
-
-.blog{padding:20px 0 90px;}
-.blog-content{
-  text-align: center;
-  margin: 0 20px;
-}
-
-.single-blog-item{
-    border-radius: 10px;
-    background: #fff;
-    margin-bottom: 30px;
-    box-shadow: 0 0px 5px rgba(71,71,71,.2);
-    -webkit-transition: .3s; 
-    -moz-transition:.3s; 
-    -ms-transition:.3s; 
-    -o-transition:.3s;
-    transition: .3s;
-}
-.single-blog-item-txt {padding:  25px 28px 27px;}
-.single-blog-item-txt h2 a {text-transform:  initial;line-height: 1.8;}
-.single-blog-item-txt h4 {
-    font-size:  14px;
-    color:  #8f949d;
-    font-weight:  400;
-    margin: 12px 0 20px;
-}
-.single-blog-item-txt h4 a {
-    font-size:  14px;
-    padding-right:  14px;
-    border-right: 1px solid #dde0e4;
-    margin-right:  15px;
-    text-transform: uppercase;
-}
-
-.single-blog-item:hover h2 a {color:#000;}
-.single-blog-item:hover{
-    box-shadow: 0 10px 20px rgba(21,19,19,.4);
-}
-
-video{
-  width: 100%;
-  border-radius: 10px 10px 0 0;
-}
-.section-header{
-  text-align: center;
-}
-}
-
-.mySlides {
-    display: none;
-   
-}
-.mySlides img {
-  vertical-align: middle;
-  border-radius:5px;
-  margin: 5vh 0 1vh;
-      }
-
-.slideshow-container {
-max-width: 1000px; 
-position: relative;
-margin: auto;
-padding:20px;
-}
-
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width:auto;
-  padding: 16px;
-  margin-top: -22px;
-  margin-left:20px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-}
-.next {
-  right: 10px;
-  border-radius: 3px 0 0 3px;
-}
- .prev {
-  left:-10px;
-}     
-      
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
-}
-
-.footer-icons li a .text {
-    font-size: 14px;
-    display: block; /* Display text on a new line */
-    color: #ccc; /* Lighter text color for the labels */
-}.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-}
-.footer-icons {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-}
-.footer-icons li {
-    padding: 0 10px;
-    text-align: center;
-}
-.footer-icons li a {
-    color: #ffa200;
-    text-decoration: none;
-    font-size: 24px;
-    display: block; /* Ensure that the text is below the icon */
-}
-
-        </style>
+        <link rel="stylesheet" href="assets/css/styles.css">
     </head>
     <body>
         
@@ -398,10 +21,10 @@ padding:20px;
             </label>
 
             <nav class="navbar">
-                <a href="Academics.html" style="--i:1;">Academics</a>
-                <a href="Networkinghub.html" style="--i:2;">Networking Hub</a>
-                <a href="HousingPlatform.html" style="--i:3;">Housing Platform</a>
-                <a href="Studentsguidelines.html" style="--i:4;">Student Guidelines</a>
+                <a href="templates/Academics.html" style="--i:1;">Academics</a>
+                <a href="templates/Networkinghub.html" style="--i:2;">Networking Hub</a>
+                <a href="templates/HousingPlatform.html" style="--i:3;">Housing Platform</a>
+                <a href="templates/Studentsguidelines.html" style="--i:4;">Student Guidelines</a>
             </nav>
             
         </header>
@@ -417,15 +40,15 @@ padding:20px;
 
       <div class="scroll-container">
         <!-- Add your images here -->
-        <img src="Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 1">
-        <img src="smartphone-template-with-business-elements.jpg" alt="Image 2">
-        <img src="The 3 IT processes CIOs need most.jpeg" alt="Image 3">
-        <img src="Futuristic command room.jpeg" alt="Image 3">
-        <img src="Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 3">
-        <img src="Futuristic command room.jpeg" alt="Image 3">
-        <img src="The 3 IT processes CIOs need most.jpeg" alt="Image 3">
-        <img src="Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 3">
-        <img src="smartphone-template-with-business-elements.jpg" alt="Image 3">
+        <img src="assets/images/Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 1">
+        <img src="assets/images/smartphone-template-with-business-elements.jpg" alt="Image 2">
+        <img src="assets/images/The 3 IT processes CIOs need most.jpeg" alt="Image 3">
+        <img src="assets/images/Futuristic command room.jpeg" alt="Image 3">
+        <img src="assets/images/Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 3">
+        <img src="assets/images/Futuristic command room.jpeg" alt="Image 3">
+        <img src="assets/images/The 3 IT processes CIOs need most.jpeg" alt="Image 3">
+        <img src="assets/images/Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 3">
+        <img src="assets/images/smartphone-template-with-business-elements.jpg" alt="Image 3">
         <!-- Add more images as needed -->
       </div>
       
@@ -433,27 +56,27 @@ padding:20px;
       <div class="slideshow-container">
 
         <div class="mySlides">
-          <img src="Document Management System (DMS) being setup by IT consultant working on laptop computer in office with document directory_ Software for archiving, searching and managing corporate file information.jpeg" style="width:100%">
+          <img src="assets/images/Document Management System (DMS) being setup by IT consultant working on laptop computer in office with document directory_ Software for archiving, searching and managing corporate file information.jpeg" style="width:100%">
         </div>
         
         <div class="mySlides">
-          <img src="The 3 IT processes CIOs need most.jpeg" style="width:100%">
+          <img src="assets/images/The 3 IT processes CIOs need most.jpeg" style="width:100%">
         </div>
         
         <div class="mySlides">
-          <img src="The Complex Choreography of Supply Chain Resilience.jpeg" style="width:100%">
+          <img src="assets/images/The Complex Choreography of Supply Chain Resilience.jpeg" style="width:100%">
         </div>
           
           <div class="mySlides">
-          <img src="The Complex Choreography of Supply Chain Resilience.jpeg" style="width:100%">
+          <img src="assets/images/The Complex Choreography of Supply Chain Resilience.jpeg" style="width:100%">
         </div>
           
           <div class="mySlides">
-          <img src="The Ultimate List of Best Free Tools & Resources for Front-End Web Developers (1).jpeg" style="width:100%">
+          <img src="assets/images/The Ultimate List of Best Free Tools & Resources for Front-End Web Developers (1).jpeg" style="width:100%">
         </div>
           
         <div class="mySlides">
-          <img src="download.jpeg" style="width:100%">
+          <img src="assets/images/download.jpeg" style="width:100%">
         </div>
           
           
@@ -481,7 +104,7 @@ padding:20px;
 						<div class="col-md-4 col-sm-6">
 							<div class="single-blog-item">
 								<div class="single-blog-item-img">
-									<img src="Futuristic command room.jpeg" alt="blog image">
+									<img src="assets/images/Futuristic command room.jpeg" alt="blog image">
 								</div>
 								<div class="single-blog-item-txt">
 									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
@@ -504,7 +127,7 @@ padding:20px;
     </div>
 								</div>
 								<div class="single-blog-item-txt">
-									<h2><a href="Studentsguidelines.html#unit">How to find your Desired Place more quickly</a></h2>
+									<h2><a href="templates/Studentsguidelines.html#unit">How to find your Desired Place more quickly</a></h2>
 									<h4>posted <span>by</span> <a href="#">admin</a> July 2024</h4>
 									<p>
 										Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
@@ -542,25 +165,25 @@ padding:20px;
     <footer class="footer">
       <ul class="footer-icons">
           <li>
-              <a href="Clubs.html" title="Club">
+              <a href="templates/Clubs.html" title="Club">
                   <i class="fas fa-users"></i>
                   <span class="text">Clubs</span>
               </a>
           </li>
           <li>
-              <a href="Religiousfaiths.html" title="Society">
+              <a href="templates/Religiousfaiths.html" title="Society">
                   <i class="worship-icon fas fa-pray"></i>
                   <span class="text">Religious Faiths</span>
               </a>
           </li>
           <li>
-              <a href="Associations.html" title="Association">
+              <a href="templates/Associations.html" title="Association">
                   <i class="fas fa-handshake"></i>
                   <span class="text">Associations</span>
               </a>
           </li>
           <li>
-              <a href="News.html" title="News">
+              <a href="templates/News.html" title="News">
                   <i class="fas fa-newspaper"></i>
                   <span class="text">News</span>
               </a>
@@ -571,58 +194,8 @@ padding:20px;
 
     </section>
 
-        <script>
-            document.querySelector('.search-btn').onclick = function() {
-    var query = document.querySelector('.search-box').value;
-    window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
-};
-
-document.querySelector('.scroll-container').addEventListener('wheel', function(e) {
-    if (e.deltaY > 0) this.scrollLeft += 100;
-    else this.scrollLeft -= 100;
-  });
-
-
-  var slideIndex = 1;
-showSlides(slideIndex);
-
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
-  }
-  slides[slideIndex-1].style.display = "block";  
-}
-
-// Auto-advance every 3 seconds (adjust as needed)
-setInterval(function() {
-  plusSlides(1);
-}, 3000); // Change the duration (in milliseconds) as desired
-
-window.addEventListener('scroll', function() {
-  var scrollPosition = window.scrollY;
-  var whitePoint = 600; // Set the scroll position you want for the color change
-  if (scrollPosition > whitePoint) {
-    document.body.style.backgroundColor = 'white';
-  } else {
-    document.body.style.backgroundColor = ''; // Or set it back to any other color
-  }
-});
-
-// Autoplay video
-document.addEventListener('DOMContentLoaded', function() {
-  var videos = document.querySelectorAll('video');
-  videos.forEach(function(video) {
-    video.play();
-  });
-});
+        <script href="assets/js/index.js">
+           
 
         </script>
     </body>

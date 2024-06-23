@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Academics</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: sans-serif;
+            }
+
+            body{
+                min-height: 100vh;
+                background: #000;
+            }
+
+            .header{
+                background: #ffa200;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding: 5px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                z-index: 100;
+            }
+
+            .header::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%; 
+                background: rgba(0, 0, 0, .1);
+                backdrop-filter: blur(50px);
+                z-index: -1;
+            }
+
+            .header::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(225, 225, 225, .4), transparent);
+                transition: .5s;
+            }
+
+            .header:hover::after {
+                left: 100%;
+            }
+
+            .logo{
+                
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 700;
+                border-radius: 10px;
+                padding: 15px 20px;
+            }
+
+                
+           .logo h2{ 
+      font-family:serif;
+     color: #fff;
+   font-size:22px ;
+    color:transparent;
+    -webkit-text-stroke:1px #fff;
+    background:url(J.png);
+     -webkit-background-clip:text;
+    background-position:0 0;
+    animation : back 10s linear infinite;
+  }
+  @keyframes back{
+    100%{
+  background-position:200px 0;
+    }
+  }
+
+
+            .navbar a{
+                font-size: 1.15rem;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 500;
+                margin-right: 2.5rem;
+            }
+
+            #check{
+                display: none;
+            }
+            .icons{
+                position: absolute;
+                right: 5%;
+                font-size: 1.8rem;
+                color: #fff;
+                cursor: pointer;
+                display: none;
+            }
+
+            @media(max-width:1000px) {
+                .header {
+                    padding: 5px;
+                }
+            }
+
+            @media (max-width: 1058px) {
+                .icons {
+                    display: inline-flex;
+                }
+
+                #check:checked~.icons #menu-icon {
+                    display: none;
+                }
+
+                .icons #close-icon {
+                    display: none;
+                }
+
+                #check:checked~.icons #close-icon {
+                    display: block;
+                }
+
+                .navbar {
+                    background: #ffa200;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    height: 0;
+                    backdrop-filter: blur(50px);
+                    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+                    overflow: hidden;
+                    transition: .3s ease;
+                    border-radius: 0 0 10px 10px;
+                }
+
+                #check:checked~.navbar {
+                    height: 14rem;
+                }
+
+                .navbar a {
+                    display: block;
+                    font-size: 1.1rem;
+                    margin: 1.5rem 0;
+                    text-align: center;
+                    transform: translateY(-50px);
+                    opacity: 0;
+                    transition: .3s ease;
+                }
+
+                #check:checked~.navbar a {
+                    transform: translateY(0);
+                    opacity: 1;
+                    transition-delay: calc(.15s * var(--i));
+                }
+            }
+
+
+            .search-container{
+  text-align: center;
+}
+.search-box{
+    margin-top: 20vh;
+  padding: 10px 15px;
+  width: 50%;
+  max-width: 500px;
+  border:none;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.search-btn{
+  padding: 10px 20px;
+  background-color: transparent;
+  color: #fff;
+  border:  2px solid #ffa200;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-btn:hover{
+  background-color: #ffa200;
+  color: #000;
+}
+
+.school{
+  margin: 10px;
+}
+
+.accordion {
+  background-color: #ffa200;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: center;
+  border: none;
+  outline: none;
+  transition: background-color 0.6s ease;
+  border-radius:5px 5px 0 0;
+
+}
+
+.active, .accordion:hover {
+  background-color: #ddd;
+}
+
+.accordion:after {
+  content: '\002B'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212"; /* Unicode character for "minus" sign (-) */
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.dropdown-button {
+  display: inline-block;
+  color: #000;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  width: 270px;
+}
+
+.dropdown-content {
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffa200;
+  margin-top: -10px;
+  position: absolute;
+  width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: all 0.5s ease-out; /* Smooth transition for opening and closing */
+  max-height: 0; /* Initially set to 0 to hide the menu */
+}
+
+.dropdown-content a {
+  text-align: center;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-family: serif;
+  transition: all 0.5s;
+}
+
+.dropdown-content a:hover {
+  color: #fff;
+}
+
+.dropdown:hover .dropdown-content {
+  max-height: 500px;
+}
+        </style>
+    </head>
+    <body>
+        
+        <header class="header">
+            <a href="index.html" class="logo"><h2>8TECH SOLUTIONS</h2></a>
+
+            <input type="checkbox" id="check">
+
+            <label for="check" class="icons">
+                <i class="fa fa-bars" id="menu-icon"></i>
+                <i class="fa fa-times" id="close-icon"></i>
+            </label>
+
+            <nav class="navbar">
+                <a href="index.html" style="--i:0;">Home</a>
+                <a href="Networkinghub.html" style="--i:2;">Networking Hub</a>
+                <a href="HousingPlatform.html" style="--i:3;">Housing Platform</a>
+                <a href="Studentsguidelines.html" style="--i:4;">Student Guidelines</a>
+            </nav>
+            
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search...">
+            <button class="search-btn">Search</button>
+        </div>
+
+        <div class="school">
+    
+          <h2>Academic Resources</h2>
+      
+          <button class="accordion">School of Pure and Applied Sciences</button>
+      <div class="panel">
+        <!-- Removed the paragraph tags around the divs as it's not valid HTML -->
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="mcs.html">Mathematics And Computer Science</a>
+            <a href="#Stats">Statistics And Programming</a>
+            <a href="#Act">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Computing & Information Science</button>
+          <div class="dropdown-content">
+            <a href="#lib">Library and Information Science</a>
+            <a href="#reco">Records Management and IT</a>
+            <a href="#it">Information Technology</a>
+            <a href="#compsc">Computer Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Biochem, Microbiology & Biotech</button>
+          <div class="dropdown-content">
+            <a href="#">Bsc(Molecular and Cell Biology)</a>
+            <a href="#">Bsc(Forensic Science)</a>
+            <a href="#">Bsc(Biotechnology)</a>
+            <a href="#">Bsc(Biochemistry)</a>
+            <a href="#">Bsc(Microbiology)</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Department of Zoological Science</button>
+          <div class="dropdown-content">
+            <a href="#">Bsc.Coastal Marine & Resource Management</a>
+            <a href="#">Bsc(Biology)</a>
+            <a href="#">Bsc(Education)</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Department of Plant Science</button>
+          <div class="dropdown-content">
+            <a href="#">Bsc(Conservation Biology)</a>
+            <a href="#">BEd(Science)</a>
+            <a href="#">BSc(Bsc)</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Department of Chemistry</button>
+          <div class="dropdown-content">
+            <a href="#">Analytical Chemistry with Management</a>
+            <a href="#">Industrial Chemistry with Management</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Department of Physics</button>
+          <div class="dropdown-content">
+            <a href="#">Telecomunication and Information Technology</a>
+            <a href="#">B.E.d(Science)</a>
+            <a href="#">Bsc(General)</a>
+          </div>
+        </div>
+        
+      </div>
+      
+      <button class="accordion">School of Medicine</button>
+      <div class="panel">
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+        <!-- Add more departments here -->
+      </div>
+      
+      
+      <button class="accordion">School of Engineering</button>
+      <div class="panel">
+        <!-- Removed the paragraph tags around the divs as it's not valid HTML -->
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+        <!-- Add more departments here -->
+      </div>
+      
+      <button class="accordion">School of Engineering</button>
+      <div class="panel">
+        <!-- Removed the paragraph tags around the divs as it's not valid HTML -->
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+        <!-- Add more departments here -->
+      </div>
+      
+      <button class="accordion">School of Engineering</button>
+      <div class="panel">
+        <!-- Removed the paragraph tags around the divs as it's not valid HTML -->
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+        <!-- Add more departments here -->
+      </div>
+      
+      <button class="accordion">School of Engineering</button>
+      <div class="panel">
+        <!-- Removed the paragraph tags around the divs as it's not valid HTML -->
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="2mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+      
+        <div class="dropdown">
+          <button class="dropdown-button">Mathematics & Actuarial Science</button>
+          <div class="dropdown-content">
+            <a href="mcs.html">Mathematics And Computer Science</a>
+            <a href="Statistics.html">Statistics And Programming</a>
+            <a href="Actuarial.html">Actuarial Science</a>
+          </div>
+        </div>
+        <!-- Add more departments here -->
+      </div>
+      
+      
+         
+      <!-- Add more schools and departments as needed -->
+      </div>
+
+        
+
+        <script>
+            document.querySelector('.search-btn').onclick = function() {
+    var query = document.querySelector('.search-box').value;
+    window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
+};
+
+// Accordion functionality
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+
+// Dropdown functionality
+var dropdowns = document.getElementsByClassName("dropdown-button");
+for (var i = 0; i < dropdowns.length; i++) {
+  dropdowns[i].addEventListener("click", function() {
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.maxHeight && dropdownContent.style.maxHeight !== '0px') {
+      dropdownContent.style.maxHeight = '0px';
+    } else {
+      dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
+    }
+  });
+}
+
+
+        </script>
+    </body>
+</html>

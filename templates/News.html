@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>News</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/assets/css/news.css">
+    </head>
+    <body>
+        
+        <header class="header">
+
+          <a href="index.html" class="logo"><h2>8TECH SOLUTIONS</h2></a>
+
+            <input type="checkbox" id="check">
+
+            <label for="check" class="icons">
+                <i class="fa fa-bars" id="menu-icon"></i>
+                <i class="fa fa-times" id="close-icon"></i>
+            </label>
+
+            <nav class="navbar">
+                <a href="/index.html" style="--i:0;">Home</a>
+                <a href="Academics.html" style="--i:1;">Academics</a>
+                <a href="Networkinghub.html" style="--i:2;">Networking Hub</a>
+                <a href="HousingPlatform.html" style="--i:3;">Housing Platform</a>
+                <a href="Studentsguidelines.html" style="--i:4;">Student Guidelines</a>
+            </nav>
+            
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search...">
+            <button class="search-btn">Search</button>
+        </div>
+
+         <!--blog start -->
+		<section id="blog" class="blog" >
+			<div class="container">
+
+				<div class="section-header">
+					<h2>news and articles</h2>
+					<p>Always upto date with our latest News and Articles </p>
+				</div><!--/.section-header-->
+
+				<div class="blog-content">
+					<div class="row">
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<img src="/assets/images/Futuristic command room.jpeg" alt="blog image">
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+									<h4>posted <span>by</span> <a href="#">admin</a> August 2024</h4>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<img src="/assets/images/Premium Photo _ E-learning for student and university concept.jpeg" alt="blog image">
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+									<h4>posted <span>by</span> <a href="#">admin</a> July 2024</h4>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+									</p>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-4 col-sm-6">
+							<div class="single-blog-item">
+								<div class="single-blog-item-img">
+									<video controls>
+                    <source src="C:\Users\USER\Videos\vid2.mp4" type="video/mp4">
+                    <source src="C:\Users\USER\Videos\vid2.ogg" type="video/ogg">
+                  </video>
+								</div>
+								<div class="single-blog-item-txt">
+									<h2><a href="#">How to find your Desired Place more quickly</a></h2>
+									<h4>posted <span>by</span> <a href="#">admin</a> June 2024</h4>
+									<p>
+										Lorem ipsum dolor sit amet, consectetur de adipisicing elit, sed do eiusmod tempore incididunt ut labore et dolore magna.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/.container-->
+			
+		</section><!--/.blog-->
+		<!--blog end -->
+
+        <script>
+            document.querySelector('.search-btn').onclick = function() {
+    var query = document.querySelector('.search-box').value;
+    window.open('https://www.bing.com/search?q=' + encodeURIComponent(query));
+};
+        </script>
+          
+    </body>
+</html>
