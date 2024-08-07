@@ -1,0 +1,522 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+  }
+  
+              body{
+                  min-height: 100vh;
+                  background: #fff;
+              }
+  
+              .header{
+                  background: #ffa200;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  padding: 5px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  z-index: 100;
+              }
+  
+              .header::before {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%; 
+                  background: rgba(0, 0, 0, .1);
+                  backdrop-filter: blur(50px);
+                  z-index: -1;
+              }
+  
+              .header::after {
+                  content: '';
+                  position: absolute;
+                  top: 0;
+                  left: -100%;
+                  width: 100%;
+                  height: 100%;
+                  background: linear-gradient(90deg, transparent, rgba(225, 225, 225, .4), transparent);
+                  transition: .5s;
+              }
+  
+              .header:hover::after {
+                  left: 100%;
+              }
+  
+              .logo{
+    
+                background: #000;
+                color: #fff;
+                text-decoration: none;
+                font-weight: 700;
+                border-radius: 5px;
+                padding: 15px 8px;
+            }
+            
+                
+            .logo h2{ 
+                font-family:serif;
+                color: #fff;
+                font-size:22px ;
+            }
+  
+  
+              .navbar a{
+                  font-size: 1.15rem;
+                  color: #000;
+                  text-decoration: none;
+                  font-weight: 500;
+                  margin-right: 2.5rem;
+              }
+  
+              #check{
+                  display: none;
+              }
+              .icons{
+                position: absolute;
+                right: 5%;
+                font-size: 1.8rem;
+                color: #fff;
+                cursor: pointer;
+                display: none;
+                border: 2px solid #000;
+                border-radius: 5px;
+                padding: 8px;
+              }
+  
+              @media(max-width:1000px) {
+                  .header {
+                      padding: 5px;
+                  }
+              }
+  
+              @media (max-width: 1058px) {
+                  .icons {
+                      display: inline-flex;
+                  }
+  
+                  #check:checked~.icons #menu-icon {
+                      display: none;
+                  }
+  
+                  .icons #close-icon {
+                      display: none;
+                  }
+  
+                  #check:checked~.icons #close-icon {
+                      display: block;
+                  }
+  
+                  .navbar {
+                    background: #ffa200;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    height: 0;
+                    backdrop-filter: blur(50px);
+                    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
+                    overflow: hidden;
+                    transition: .3s ease;
+                    border-radius: 0 0 5px 5px;
+                  }
+  
+                  #check:checked~.navbar {
+                      height: 15.5rem;
+                  }
+  
+                  .navbar a {
+                      display: block;
+                      font-size: 1.1rem;
+                      margin: 1.5rem 0;
+                      text-align: center;
+                      transform: translateY(-50px);
+                      opacity: 0;
+                      transition: .3s ease;
+                  }
+  
+                  #check:checked~.navbar a {
+                      transform: translateY(0);
+                      opacity: 1;
+                      transition-delay: calc(.15s * var(--i));
+                  }
+              }
+  
+  
+              .search-container{
+    text-align: center;
+  }
+  .search-box{
+      margin-top: 6rem;
+    padding: 10px 15px;
+    width: 50%;
+    max-width: 500px;
+    border:none;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  .search-btn{
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    border:  2px solid #ffa200;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .search-btn:hover{
+    background-color: #ffa200;
+    color: #000;
+  }
+  
+  #pdf {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf button a {
+        color: #000;
+      }
+      #pdf button:hover {
+        color: #fff;
+      }
+  
+      
+  
+  
+      #pd {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pd button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pd button a {
+        color: #000;
+      }
+      #pd button:hover {
+        color: #fff;
+      }
+  
+      #pdf2 {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf2 button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf2 button a {
+        color: #000;
+      }
+      #pdf2 button:hover {
+        color: #fff;
+      }
+  
+      #pdf1 {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf1 button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf1 button a {
+        color: #000;
+      }
+      #pdf1 button:hover {
+        color: #fff;
+      }
+  
+      #pd1 {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pd1 button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pd1 button a {
+        color: #000;
+      }
+      #pd1 button:hover {
+        color: #fff;
+      }
+  
+      #pdf3 {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf3 button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf3 button a {
+        color: #000;
+      }
+      #pdf3 button:hover {
+        color: #fff;
+      }
+  
+      #pdf3b {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf3b button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf3b button a {
+        color: #000;
+      }
+      #pdf3b button:hover {
+        color: #fff;
+      }
+  
+      #pdf4 {
+        margin-top: 20px;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+      }
+      #pdf4 button {
+        width: 45%;
+        border-radius: 5px;
+        margin: 5px;
+        transition: all 0.5s;
+        background: #ffa200;
+        font-weight: bold;
+        font-family: serif;
+        font-size: 13px;
+        height: 35px;
+        border: none;
+        box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+      }
+      #pdf4 button a {
+        color: #000;
+      }
+      #pdf4 button:hover {
+        color: #fff;
+      }
+  
+  
+      .sem2{
+        padding: 8px;
+        border-radius: 10px;
+        margin: 20px;
+        box-shadow: 1px 2px 10px 1px rgba(0,0,0,0.8);
+        text-align: center;
+      }
+      
+      .btn{
+      color:#fff;
+      margin-top:10px;
+      margin-left:6px;
+      text-align:center;
+    
+    @keyframes back{
+      100%{
+    background-position:200px 0;
+      }
+    }
+     a {
+      font-weight:bold;
+      color:#000;
+    }
+    
+    button{
+      margin-top:20px;
+    width:100px;
+    border-radius:25px; 
+    padding:8px 20px;
+    text-align:center;  
+    border:1px solid #ffa200;
+    background:transparent;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  
+  span{
+    background:#ffa200;
+    height:100%;
+    width:0;
+    border-radius:15px;
+    position:absolute;
+    left:0;
+    bottom:0;
+    z-index:-1;
+    transition:0.5s;
+  }
+  button:hover span{
+    width:100%;
+    
+  }
+  button:hover{
+    border:none;
+  }
+    button a:hover{
+      color: #fff;
+    }
+    }
+    
+      .section {
+        display: none; /* Hide all sections by default */
+      }
+      .active {
+        display: block; /* Show the active section */
+      }
+      /* Style for your navigation bar */
+  .butto{
+    text-align: center;
+    margin-top: 70px;
+  }
+  .butto button{
+    font-family: serif;
+    background: #fff;
+    color: #ffa200;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px 5px;
+    border: none;
+    box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+  }
+      /* Initially show the homepage content */
+      #homepage {
+        display: block;
+      }
+     .acad h2{
+        font-size: 16px;
+        font-family: serif;
+        text-align: center;
+        margin-top: 28px;
+      }
+  
+      .footer-icons li a .text {
+        font-size: 14px;
+        display: block; /* Display text on a new line */
+        color: #ccc; /* Lighter text color for the labels */
+    }
+    
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+    }
+    
+    .footer-icons {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .footer-icons li {
+        padding: 0 10px;
+        text-align: center;
+    }
+    
+    .footer-icons li a {
+        color: #ffa200;
+        text-decoration: none;
+        font-size: 24px;
+        display: block; /* Ensure that the text is below the icon */
+    }
+    
+    
