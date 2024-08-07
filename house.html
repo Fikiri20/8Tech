@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>8Tech Solutions</title>
+        <link rel="stylesheet" type="text/css" href="styles/house.css">
+    </head>
+    <body>
+        <!--header starts-->
+        <header class="header">
+            <a href="#" class="logo"><h2>8TECH SOLUTIONS</h2></a>
+
+            <input type="checkbox" id="check">
+
+            <label for="check" class="icons">
+                <i class="fa fa-bars" id="menu-icon"></i>
+                <i class="fa fa-times" id="close-icon"></i>
+            </label>
+
+            <nav class="navbar">
+                <a href="Studentsguidelines.html" style="--i:1;">Student Guidelines</a>
+                <a href="HousingPlatform.html" style="--i:2;">Housing Platform</a>
+                <a href="Networkinghub.html" style="--i:3;">Networking Hub</a>
+                <a href="Academics.html" style="--i:4;">Academics</a>
+            </nav>
+        </header>
+        <!--header ends-->
+
+
+
+        <!--Main content starts-->
+        <div class="house">
+
+            <h2>Tulivu The Hostel</h2>
+
+           <!--scroll starts-->
+            <div class="scroll-container">
+              <div class="scroll">
+                <img src="images/Premium Photo _ E-learning for student and university concept.jpeg" alt="Image 1">
+                <img src="images/smartphone-template-with-business-elements.jpg" alt="Image 2">
+                <img src="images/The 3 IT processes CIOs need most.jpeg" alt="Image 3">
+                <img src="images/Futuristic command room.jpeg" alt="Image 3">
+              </div>
+            </div>
+           <!--scroll ends-->
+
+
+        <!--house details starts-->
+        <div class="house-details">
+            <div class="details">
+
+                <h2>Tulivu The Hostel</h2>
+                <hr>
+        <div class="deta">
+            <p>Rent: <span>Ksh.5500</span>/Month</p>
+            <p>Type: Single</p>
+            <p>Available rooms: 34</p>
+            <p>Location: KM</p>
+        </div>
+
+        </div>
+        <div>
+          <button class="btn"><a href="#https://wa.me/+254{{house.phone}}" class="cart">Chat with the management</a></button>
+        </div>
+        </div>
+        <!--house details ends-->
+
+
+
+        <!--footer starts-->
+        <footer class="footer">
+            <ul class="footer-icons">
+                <li>
+                    <a href="Clubs.html" title="Club">
+                        <i class="fas fa-users"></i>
+                        <span class="text">Clubs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Religiousfaiths.html" title="Society">
+                        <i class="worship-icon fas fa-pray"></i>
+                        <span class="text">Religious Faiths</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="Associations.html" title="Association">
+                        <i class="fas fa-handshake"></i>
+                        <span class="text">Associations</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="News.html" title="News">
+                        <i class="fas fa-newspaper"></i>
+                        <span class="text">News</span>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+        <!--footer ends-->
+      
+    </div>
+    <!--Main content ends-->
+
+
+    <script>
+
+        document.querySelector('.scroll-container').addEventListener('wheel', function(e) {
+            if (e.deltaY > 0) this.scrollLeft += 100;
+            else this.scrollLeft -= 100;
+            });
+    </script>
+
+    </body>
+</html>
