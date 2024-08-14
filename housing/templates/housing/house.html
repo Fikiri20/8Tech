@@ -1,0 +1,91 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="house">
+            <h2>{{house.house_name}}</h2>
+
+
+            <div class="scroll-container">
+            {% for detail in houseDetails %}
+            <div class="scroll">
+                <img src="{{detail.images.url}}">
+            </div>
+            {% endfor %}
+
+        </div>
+
+        <div class="house-details">
+            <div class="details">
+
+            <h2>{{house.house_name}}</h2>
+            <hr>
+        <div class="deta">
+            <p>Rent: <span>Ksh.{{house.rent}}</span>/Month</p>
+            <p>Type: {{house.house_type}}</p>
+            <p>Available rooms: {{house.available_rooms}}</p>
+            <p>Location: {{house.location}}</p>
+        </div>
+
+        </div>
+        <div>
+          <button class="btn"><a href="https://wa.me/+254{{house.phone}}?text=Hey+{{house.officials_name}},+It's+{{user.username}}+here.%0AI'm+enquring+about+vacancies+in+{{house.house_name}}." class="cart">Chat with the management</a></button>
+        </div>
+
+
+        </div>
+    </div>
+
+    <script>
+
+        document.querySelector('.scroll-container').addEventListener('wheel', function(e) {
+        if (e.deltaY > 0) this.scrollLeft += 100;
+        else this.scrollLeft -= 100;
+        });
+        
+        
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+        showSlides(slideIndex += n);
+        }
+        
+        function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        if (n > slides.length) {slideIndex = 1}    
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        }
+        slides[slideIndex-1].style.display = "block";  
+        }
+        
+        // Auto-advance every 3 seconds (adjust as needed)
+        setInterval(function() {
+        plusSlides(1);
+        }, 3000); // Change the duration (in milliseconds) as desired
+        
+        window.addEventListener('scroll', function() {
+        var scrollPosition = window.scrollY;
+        var whitePoint = 600; // Set the scroll position you want for the color change
+        if (scrollPosition > whitePoint) {
+        document.body.style.backgroundColor = 'white';
+        } else {
+        document.body.style.backgroundColor = ''; // Or set it back to any other color
+        }
+        });
+        
+        // Autoplay video
+        document.addEventListener('DOMContentLoaded', function() {
+        var videos = document.querySelectorAll('video');
+        videos.forEach(function(video) {
+        video.play();
+        });
+        });
+        
+        </script>
+
+    {% endblock content %}
+   

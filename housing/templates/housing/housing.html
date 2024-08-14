@@ -1,0 +1,70 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="housing">
+
+<div class="house-search">
+    <h1>SEARCH FOR <span>HOSTELS</span></h1>
+<form action="">
+    <div class="search-container">
+        <input type="text" name="q" class="search-box" placeholder="Search...">
+        <button class="search-btn">Search</button>
+    </div>
+</form>
+</div>
+
+
+<!--blog start -->
+<section id="blog" class="blog" >
+    <div class="container">
+        
+        <div class="blog-content">
+            <div class="row">
+
+{% for hous in house %}
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-blog-item">
+                        <div class="single-blog-item-img">
+                        <img src="{{hous.house_image.url}}">
+                        </div>
+                        <div class="single-blog-item-txt">
+                            <h2><a href="{% url 'house' hous.id %}">{{hous.house_name}}</a></h2>
+                            <hr>
+                            <h4><a href="#">{{hous.house_type}}</a>Ksh.{{hous.rent}}/month</h4>
+
+                            <div class="location">
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+
+                            <p>{{hous.location}}</p>
+                        </div>
+
+                            <p>{{hous.description}}</p>
+
+                            <div class="btn">
+                                <button><a href="{% url 'house' hous.id %}"><span></span>More</a></button>
+                                <button><a href="{% url 'house' hous.id %}"><span></span>Reserve</a></button>
+                            </div>
+
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+{% endfor %}
+
+
+
+            </div>
+        </div>
+    </div><!--/.container-->
+</section><!--/.blog-->
+<!--blog end -->
+</div>
+  
+
+{% endblock content %}
+
+
