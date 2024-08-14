@@ -1,0 +1,119 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="students">
+
+  <div class="guide-search">
+      <h1>SEARCH FOR <span>GUIDELINES</span></h1>
+      <form>
+      <div class="search-container">
+          <input type="text" class="search-box" placeholder="Search...">
+          <button class="search-btn">Search</button>
+      </div>
+    </form>
+  </div>
+
+<div class="com">
+  <h2>COMRADES' <span>GUIDELINES</span></h2>
+
+
+
+<div class="dates">
+<h3>Important Dates</h3>
+
+<div class="tbl">
+
+<table>
+<tr>
+  <th>Event</th>
+  <th>Date</th>
+</tr>
+
+{% for d in dates %}
+
+<tr>
+  <td>{{d.event}}</td>
+  <td>{{d.date}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+</div>
+
+<div class="unitsRegistration" id="unit">
+  {% for x in video %}
+
+<h3>{{x.caption}}</h3>
+
+<div class="video-container">
+
+  <h3 class="text-center"></h3>
+  <video controls="controls">
+  <source src="{{x.video.url}}" type="video/mp4">
+    </video>
+  
+</div>
+{% endfor %}
+</div>
+
+<div class="guidelines">
+
+<h2>Student Guidelines</h2>
+
+{% for guid in guide %}
+
+<button class="accordion">{{guid.guideline}}</button>
+<div class="panel">
+<p>{{guid.description|linebreaksbr}}</p>
+</div>
+
+{% endfor %}
+
+
+
+</div>
+
+ <div class="fee">
+
+<h3>Fee Structure</h3>
+
+
+{% for x in fee %}
+
+<h3>{{x.name}}</h3>
+
+<img src="{{x.fee.url}}">
+
+{% endfor %}
+ 
+
+</div>
+
+
+</div>
+</div>
+
+<script>
+
+// Accordion functionality
+var acc = document.getElementsByClassName("accordion");
+for (var i = 0; i < acc.length; i++) {
+acc[i].addEventListener("click", function() {
+this.classList.toggle("active");
+var panel = this.nextElementSibling;
+if (panel.style.maxHeight) {
+panel.style.maxHeight = null;
+} else {
+panel.style.maxHeight = panel.scrollHeight + "px";
+}
+});
+}
+</script>
+
+
+
+{% endblock content %}

@@ -1,0 +1,177 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<body class="home">
+<form>            
+<div class="search-container">
+    <input type="text" class="search-box" placeholder="Search...">
+    <button class="search-btn">Search</button>
+</div>
+</form>
+
+
+{% if user.is_authenticated %}
+<a style="color:white; margin:30px;">Hello, {{user.username}}</a>
+{% endif %}
+
+<div class="log">
+    <img src="{% static "images\8logo.jpg" %}">
+</div>
+
+<div class="scroll-container">
+
+{% for scrol in scroll %}
+<div class="scroll">
+<img src="{{scrol.scrol_images.url}}">
+<h2>{{scrol.topic}}</h2>
+</div>
+{% endfor %}
+
+</div>
+
+<div class="slideshow">
+
+<div class="slideshow-container">
+{% for slid in slide %}
+
+ <div class="mySlides">
+  <img src="{{slid.slide_image.url}}" style="width:100%">
+  <h2>{{slid.slide_topic}}</h2>
+
+ </div>
+ 
+ {% endfor %}
+  
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+<div class="dotsContainer">
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+</div>  
+</div>  
+
+
+
+<section id="sepa">
+
+ <!--blog start -->
+<section id="blog" class="blog" >
+    <div class="container">
+
+        <div class="blog-content">
+            
+            <div class="row">
+
+
+{% for new in news %}
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-blog-item">
+                        <div class="single-blog-item-img">
+                        <img src="{{new.news_images.url}}">
+                        </div>
+                        <div class="single-blog-item-txt">
+                            <h2><a href="#">{{new.news_topic}}</a></h2>
+                            <hr>
+                            <h4>posted <span>by</span><a href="admin/">{{new.news_admin}}</a>{{new.posted_date}}</h4>
+                            <p>{{new.news_description}}</p>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+ {% endfor %}
+
+ 
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-blog-item">
+                        <div class="single-blog-item-img">
+                            <!-- Autoplay Video Section -->
+                            <div class="video-section">
+                            <video  autoplay muted loop>
+                            <source src="{{video.video.url}}" type="video/mp4">
+                            </video>
+                            </div>
+                        </div>
+                        <div class="single-blog-item-txt">
+                            <h2><a href="#">{{video.caption}}</a></h2>
+                            <hr>
+                            <h4>posted <span>by</span> <a href="#">{{video.news_admin}}</a>{{video.date}}</h4>
+                            <p>{{video.news_description}}</p>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+</section>
+<!--blog end -->
+
+</section>
+
+
+
+
+<script>
+
+document.querySelector('.scroll-container').addEventListener('wheel', function(e) {
+if (e.deltaY > 0) this.scrollLeft += 100;
+else this.scrollLeft -= 100;
+});
+
+
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+var i;
+var slides = document.getElementsByClassName("mySlides");
+if (n > slides.length) {slideIndex = 1}    
+if (n < 1) {slideIndex = slides.length}
+for (i = 0; i < slides.length; i++) {
+slides[i].style.display = "none";  
+}
+slides[slideIndex-1].style.display = "block";  
+}
+
+// Auto-advance every 3 seconds (adjust as needed)
+setInterval(function() {
+plusSlides(1);
+}, 3000); // Change the duration (in milliseconds) as desired
+
+window.addEventListener('scroll', function() {
+var scrollPosition = window.scrollY;
+var whitePoint = 600; // Set the scroll position you want for the color change
+if (scrollPosition > whitePoint) {
+document.body.style.backgroundColor = 'white';
+} else {
+document.body.style.backgroundColor = ''; // Or set it back to any other color
+}
+});
+
+// Autoplay video
+document.addEventListener('DOMContentLoaded', function() {
+var videos = document.querySelectorAll('video');
+videos.forEach(function(video) {
+video.play();
+});
+});
+
+</script>
+</body>
+
+{% endblock content %}
