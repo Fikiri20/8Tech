@@ -1,0 +1,125 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="networking">
+
+  <div class="network-search">
+    <h1>SEARCH FOR <span>PRODUCTS</span></h1>
+    <form action="">
+      <div class="search-container">
+          <input type="text" name="q" class="search-box" placeholder="Search...">
+          <button class="search-btn">Search</button>
+      </div>
+    </form>
+</div>
+
+
+
+<div class="big-box">
+
+  <div class="box">
+
+    {% for net in networks %}
+
+    <span style="--i:{{net.id}}"><img src="{{net.item_image.url}}"></span>
+
+    {% endfor %}
+
+</div>
+</div>
+
+
+<div class="container">
+
+  <h3 class="title"> Amazing Deals</h3>
+
+
+  <div class="products-container">
+    {% for item in items %}
+
+     <div class="product" data-name="p-{{item.id}}">
+        <img src="{{item.image.url}}" alt="">
+        <h3>{{item.title}}</h3>
+        <div class="price">Ksh{{item.price}}</div>
+     </div>
+
+     <div class="products-preview">
+      {% for item in items %}
+
+      <div class="preview" data-target="p-{{item.id}}">
+         <i class="fas fa-times"></i>
+         <h3>{{item.title}}</h3>
+         <div class="stars">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span>( 8Tech )</span>
+         </div>
+         <p>{{item.description|linebreaksbr}}</p>
+         <div class="price">Ksh{{item.price}}</div>
+         <div class="buttons">
+            <a href="https://wa.me/+254{{item.phone}}?text=Hey+{{item.sellers_name}},+It's+{{user.username}}+here.%0AI'm+interested+in+{{item.title}}." class="buy">buy now</a>
+            <a href="https://wa.me/+254{{item.phone}}?text=Hey+{{item.sellers_name}},+It's+{{user.username}}+here.%0AI'm+interested+in+{{item.title}}." class="cart">contact us</a>
+         </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+
+     {% endfor %}
+
+  </div>
+
+
+</div>
+
+   
+    <div class="listing">
+      <hr>
+
+      <h3>DO YOU WANT TO ADD YOUR BUSINESS LISTING WITH US?</h3>
+      <p>8Tech Solutions offer you to list your business with us and we are very much able to promote your Business.</p>
+      
+      <form action="#">
+        <input type="email" class="email" placeholder="Enter your email here">
+        <br>
+        <button class="btn"><a href="https://wa.me/+254113631232?text=Hey+8Tech,+It's+{{user.username}}+here.%0AI+would+like+to+advertise+with+you.">Contact Us</a></button>
+      </form>
+      <hr>
+
+    </div>
+
+  </div>
+
+  
+
+<script>
+  let preveiwContainer = document.querySelector('.products-preview');
+  let previewBox = preveiwContainer.querySelectorAll('.preview');
+  
+  document.querySelectorAll('.products-container .product').forEach(product =>{
+    product.onclick = () =>{
+      preveiwContainer.style.display = 'flex';
+      let name = product.getAttribute('data-name');
+      previewBox.forEach(preview =>{
+        let target = preview.getAttribute('data-target');
+        if(name == target){
+          preview.classList.add('active');
+        }
+      });
+    };
+  });
+  
+  previewBox.forEach(close =>{
+    close.querySelector('.fa-times').onclick = () =>{
+      close.classList.remove('active');
+      preveiwContainer.style.display = 'none';
+    };
+  });
+
+</script>
+{% endblock content %}

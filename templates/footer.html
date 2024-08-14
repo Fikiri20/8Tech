@@ -1,0 +1,63 @@
+{% load static %}
+<footer class="footer">
+    <ul class="footer-icons">
+
+        {% if user.is_authenticated %}
+
+
+        <li>
+            <a href="{% url "club" %}" title="Club">
+                <i class="fas fa-users"></i>
+                <span class="text">Clubs</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url "faith" %}" title="Society">
+                <i class="worship-icon fas fa-pray"></i>
+                <span class="text">Religious Faiths</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url "association" %}" title="Association">
+                <i class="fas fa-handshake"></i>
+                <span class="text">Associations</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url "news" %}" title="News">
+                <i class="fas fa-newspaper"></i>
+                <span class="text">News</span>
+            </a>
+        </li>
+        {% else %}
+
+        <li>
+            <a href="/accounts/login" title="Club">
+                <i class="fas fa-users"></i>
+                <span class="text">Clubs</span>
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/login" title="Society">
+                <i class="worship-icon fas fa-pray"></i>
+                <span class="text">Religious Faiths</span>
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/login" title="Association">
+                <i class="fas fa-handshake"></i>
+                <span class="text">Associations</span>
+            </a>
+        </li>
+        <li>
+            <a href="/accounts/login" title="News">
+                <i class="fas fa-newspaper"></i>
+                <span class="text">News</span>
+            </a>
+        </li>
+
+        {% endif %}
+
+
+    </ul>
+</footer>

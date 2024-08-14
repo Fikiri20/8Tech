@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registration</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/accounts.css' %}">
+	</head>
+    <body>
+
+        <div class="box">
+
+            <h2>Register</h2>
+
+
+            <span class="borderLine"></span>
+
+        <form action="register" method="post">
+            {% csrf_token %}
+            <h2 style="color: white;">Sign up</h2>
+
+
+              <div class="inputBox">
+                <input type="text" required="required" name="username">
+                <span>Username</span>
+                <i></i>
+              </div>
+
+              <div class="inputBox">
+                <input type="email" required="required" name="email">
+                <span>email</span>
+                <i></i>
+              </div>
+
+              <div class="inputBox">
+                <input type="password" required="required" name="password1">
+                <span>Password</span>
+                <i></i>
+              </div>
+
+              <div class="inputBox">
+                <input type="password" required="required" name="password2">
+                <span>Confirm Password</span>
+                <i></i>
+              </div>
+
+            <input type="Submit">
+        </form>
+
+        <div>
+            {% for message in messages %}
+            <h3>{{message}}</h3>
+            {% endfor %}
+        </div>
+    </div>
+    
+    </body>
+</html>
