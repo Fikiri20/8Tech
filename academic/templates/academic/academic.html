@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+  <body class="home">
+    <div class="academics">
+      <form action="">
+        <div class="search-container">
+            <input type="text" name="q" class="search-box" placeholder="Search...">
+            <button class="search-btn">Search</button>
+        </div>
+      </form>
+
+      <div class="school">
+        <h2>Academic Resources</h2>
+
+        {% for school in schools %}
+        
+          <button class="accordion">{{ school.school_name }}</button>
+          <div class="panel">
+            {% for department in departments %}
+              {% if department.school == school %}
+                <div class="dropdown">
+                  <button class="dropdown-button">{{ department.department_name }}</button>
+                  <div class="dropdown-content">
+                    {% for course in courses %}
+                      {% if course.department == department %}
+                        <a href="{% url 'course' course.course_name %}">{{ course.course_name }}</a>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script>
+      // Accordion functionality
+      var acc = document.getElementsByClassName('accordion')
+      for (var i = 0; i < acc.length; i++) {
+        acc[i].addEventListener('click', function () {
+          this.classList.toggle('active')
+          var panel = this.nextElementSibling
+          if (panel.style.maxHeight) {
+            panel.style.maxHeight = null
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + 'px'
+          }
+        })
+      }
+      
+      // Dropdown functionality
+      var dropdowns = document.getElementsByClassName('dropdown-button')
+      for (var i = 0; i < dropdowns.length; i++) {
+        dropdowns[i].addEventListener('click', function () {
+          var dropdownContent = this.nextElementSibling
+          if (dropdownContent.style.maxHeight && dropdownContent.style.maxHeight !== '0px') {
+            dropdownContent.style.maxHeight = '0px'
+          } else {
+            dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px'
+          }
+        })
+      }
+    </script>
+  </body>
+{% endblock %}

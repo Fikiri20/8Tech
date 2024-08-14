@@ -1,0 +1,65 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="club-search">
+  <h1>SEARCH FOR <span>CLUBS</span></h1>
+  <form>
+  <div class="search-container">
+      <input type="text" name="q" class="search-box" placeholder="Search...">
+      <button class="search-btn">Search</button>
+  </div>
+</form>
+</div>
+
+<div class="club">
+  <h2>KU CLUBS</h2>
+
+{% for club in clubs %}
+
+  <div class="club1">
+      <h3>{{club.club_name}}</h3>
+
+      <div class="school">
+    
+    
+        <button><a href="https://wa.me/+254{{club.phone}}?text=Hey+{{club.officials_name}},+It's+{{user.username}}+here.%0AI'm+interested+in+joining+{{club.club_name}}."><span></span>Chat with Us</a></button>
+        <button class="accordion"><a><span></span>More Info</a></button>
+     <div class="panel">
+       <p>{{club.club_description|linebreaksbr}}</p>
+     </div>    
+
+        </div>
+        
+      <div class="status">
+          <button class="stbtn">Status</button>
+          <button class="active">{{club.status}}</button>
+      </div>
+    </div>    
+
+  {% endfor %}
+</div>
+
+
+
+<script>
+            
+
+  // Accordion functionality
+  var acc = document.getElementsByClassName("accordion");
+  for (var i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+  
+          </script>
+  
+
+{% endblock content %}
