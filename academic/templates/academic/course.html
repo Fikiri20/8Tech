@@ -17,12 +17,28 @@
         <div class="sem2">
           <h3>1st Sem Notes and Past Papers</h3>
           <div class="btn">
-            <button onclick="showPastPaper1()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNote1()"><a href="#"><span></span>Notes</a></button>
+            <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
+            <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pd1">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          {% comment %}remember to style this kindly to fit the general ui{% endcomment %}
+
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 1 and paper.sem == 1%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 1 and note.sem == 1%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
 
@@ -33,8 +49,22 @@
             <button onclick="showNotes3()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf3">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 1 and paper.sem == 2%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 1 and note.sem == 2%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -49,8 +79,22 @@
             <button onclick="showNotes()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 2 and paper.sem == 1%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 2 and note.sem == 1%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
 
@@ -61,8 +105,22 @@
             <button onclick="showNotes2()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf2">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 2 and paper.sem == 2%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 2 and note.sem == 2%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -77,8 +135,22 @@
             <button onclick="showNote()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pd">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 3 and paper.sem == 1%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 3 and note.sem == 1%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
 
@@ -89,8 +161,22 @@
             <button onclick="showNotes3b()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf3b">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 3 and paper.sem == 2%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 3 and note.sem == 2%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -105,20 +191,48 @@
             <button onclick="showNotes1()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf1">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 4 and paper.sem == 1%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 4 and note.sem == 1%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
 
-        <div class="sem2">
+        <div class="sem2 sem-section">
           <h3>2nd Sem Notes and Past Papers</h3>
           <div class="btn">
             <button onclick="showPastPapers4()"><a href="#"><span></span>Exams</a></button>
             <button onclick="showNotes4()"><a href="#"><span></span>Notes</a></button>
           </div>
 
-          <div id="pdf4">
-            <!-- Placeholder for the links that will be updated by JavaScript -->
+          <div class="files-dropdown-past">
+            {% for paper in past_papers %}
+            {% if paper.year == 4 and paper.sem == 2%}
+              <div>{{ paper.name }}</div>
+              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+               {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="files-dropdown-notes">
+            {% for note in notes %}
+            {% if note.year == 4 and note.sem == 2%}
+              <div>{{ note.name }}</div>
+              <a href="{% url 'download_note' file_id=note.id %}">download</a>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -169,84 +283,33 @@
     // Mathematics and Comp Sc sem1
     // JavaScript functions to update the links
     
-    // YEAR 1 SEM1 PAST PAPERS
-    function showPastPaper1() {
-      document.getElementById('pd1').innerHTML = '{% for paper in pastPaper1_1 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
+    function showNotesOrPastPapers(event) {
+      // Prevent default action if necessary
+      event.preventDefault()
     
-    // YEAR1 SEM1 NOTES
-    function showNote1() {
-      document.getElementById('pd1').innerHTML = '{% for note in notes1_1 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
+      // Get the clicked button
+      const clickedButton = event.currentTarget
     
-    //YEAR1 SEM2 PAST PAPERS
-    function showPastPapers3() {
-      document.getElementById('pdf3').innerHTML = '{% for paper in pastPaper1_2 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
+      // Select sections
+      const notesSection = document.querySelector('.files-dropdown-notes')
+      const pastPaperSection = document.querySelector('.files-dropdown-past')
     
-    //YEAR1 SEM2 NOTES
-    function showNotes3() {
-      document.getElementById('pdf3').innerHTML = '{% for note in notes1_2 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
+      // Check the text of the clicked button
+      const buttonText = clickedButton.querySelector('a').textContent.trim()
     
-    //YEAR2 SEM1 PAST PAPERS
-    function showPastPapers() {
-      document.getElementById('pdf').innerHTML = '{% for paper in pastPaper2_1 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR2 SEM1 PAST NOTES
-    function showNotes() {
-      document.getElementById('pdf').innerHTML = '{% for note in notes2_1 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR2 SEM2 PAST PAPERS
-    function showPastPapers2() {
-      document.getElementById('pdf2').innerHTML = '{% for paper in pastPaper2_2 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR2 SEM2 PAST NOTES
-    function showNotes2() {
-      document.getElementById('pdf2').innerHTML = '{% for note in notes2_2 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR3 SEM1 PAST PAPERS
-    function showPastPaper() {
-      document.getElementById('pd').innerHTML = '{% for paper in pastPaper3_1 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR3 SEM1 NOTES
-    function showNote() {
-      document.getElementById('pd').innerHTML = '{% for note in notes3_1 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
-    
-    ///YEAR3 SEM2 PAST PAPERS
-    function showPastPapers3b() {
-      document.getElementById('pdf3b').innerHTML = '{% for paper in pastPaper3_2 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR3 SEM2 NOTES
-    function showNotes3b() {
-      document.getElementById('pdf3b').innerHTML = '{% for note in notes3_2 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR4 SEM1 PAST PAPERS
-    function showPastPapers1() {
-      document.getElementById('pdf1').innerHTML = '{% for paper in pastPaper4_1 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR4 SEM1 NOTES
-    function showNotes1() {
-      document.getElementById('pdf1').innerHTML = '{% for note in notes4_1 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR4 SEM2 PAST PAPERS
-    function showPastPapers4() {
-      document.getElementById('pdf4').innerHTML = '{% for paper in pastPaper4_2 %}<button><a href="{{paper.link}}">{{paper}}</a></button>{% endfor %}'
-    }
-    
-    //YEAR4 SEM2 NOTES
-    function showNotes4() {
-      document.getElementById('pdf4').innerHTML = '{% for note in notes4_2 %}<button><a href="{{note.link}}">{{note}}</a></button>{% endfor %}'
+      if (buttonText === 'Exams') {
+        // Show past papers section and hide notes section
+        pastPaperSection.style.display = 'flex'
+        notesSection.style.display = 'none'
+      } else if (buttonText === 'Notes') {
+        // Show notes section and hide past papers section
+        notesSection.style.display = 'flex'
+        pastPaperSection.style.display = 'none'
+      } else {
+        // Hide both sections if neither is clicked
+        notesSection.style.display = 'none'
+        pastPaperSection.style.display = 'none'
+      }
     }
   </script>
 {% endblock %}

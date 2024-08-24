@@ -42,9 +42,12 @@ class CourseUnit(models.Model):
 # let's define a model tha holds past papers
 
 class PastPapers(models.Model):
+    past_paper_file = models.FileField(upload_to="past papers")
     unit = models.ForeignKey(CourseUnit, on_delete=models.CASCADE)
     name = models.CharField("past paper name", max_length=50)
-    past_paper_file = models.FileField(upload_to="past papers")
+    year = models.IntegerField(blank=True, null=True)
+    sem = models.IntegerField(blank=True, null=True)
+    
 
     class Meta:
         verbose_name_plural = "past papers"
@@ -56,7 +59,9 @@ class PastPapers(models.Model):
 class Notes(models.Model):
     unit = models.ForeignKey(CourseUnit, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
+    year = models.IntegerField(blank=True, null=True)
     notes_file = models.FileField(upload_to="notes")
+    sem = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
