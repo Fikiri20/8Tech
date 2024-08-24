@@ -19,6 +19,7 @@ from django.urls import path, include, re_path
 from django.views.static import serve
 from django.conf import settings
 from django.conf.urls.static import static
+from . import views
 
 
 # Changed the urlpatterns to more mordern and acceptable form
@@ -42,6 +43,8 @@ urlpatterns = [
     re_path(r'^static/(.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
     path('accounts/',include('accounts.urls')),
+    path('download/<int:file_id>', views.download_past_paper, name='download_pastpaper'),
+    path('download/<int:file_id>', views.download_note, name='download_note'),
     path('', include('home.urls')),
     path('', include('housing.urls')),
     path('', include('networking.urls')),

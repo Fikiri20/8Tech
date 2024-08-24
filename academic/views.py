@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .models import School, Department, Course
+from .models import School, Department, Course, PastPapers, Notes
+from django.http import FileResponse, Http404
+from django.conf import settings
+import os
 
 
 # Create your views here.
@@ -17,9 +20,16 @@ def academic(request):
     context = {'schools': schools, 'departments': departments, 'courses': courses}
     return render(request, 'academic/academic.html', context)
 
+
+
 def course(request, pk):
     courses = Course.objects.all()
-    context = {"courses": courses}
+    past_papers = PastPapers.objects.all()
+    notes = Notes.objects.all()
+    context = {"courses": courses, "past_papers": past_papers, "notes": notes}
     return render(request, 'academic/course.html', context)
+
+
+
 
 
