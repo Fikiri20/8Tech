@@ -26,7 +26,17 @@ def course(request, pk):
     courses = Course.objects.all()
     past_papers = PastPapers.objects.all()
     notes = Notes.objects.all()
-    context = {"courses": courses, "past_papers": past_papers, "notes": notes}
+
+    sections = [
+        {'id': 'homepage','year': 1, 'name': '1ST YEAR'},
+        {'id': 'about', 'year': 2, 'name': '2ND YEAR'},
+        {'id': 'services', 'year': 3, 'name': '3RD YEAR'},
+        {'id': 'contact', 'year': 4, 'name': '4TH YEAR'},
+    ]
+
+
+
+    context = {"courses": courses, "past_papers": past_papers, "notes": notes, "sections": sections, "semester": [1, 2]}
     return render(request, 'academic/course.html', context)
 
 
