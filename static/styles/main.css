@@ -607,7 +607,7 @@ body.home {
 /* styling to deal with the hiden past papers and notes */
 
 .files-dropdown-past {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin-top: 10px;
   font-size: 3rem;
@@ -618,7 +618,7 @@ body.home {
 }
 
 .files-dropdown-notes {
-  display: none;
+  display: flex;
   flex-direction: column;
   margin-top: 10px;
   font-size: 3rem;

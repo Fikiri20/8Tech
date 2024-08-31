@@ -16,7 +16,7 @@ def login(request):
             return redirect("/")
         else:
             messages.info(request,'invalid credentials')
-            return redirect('login')
+            return redirect('accounts:login')
         
     else:
         return render(request,'login.html')
@@ -32,20 +32,20 @@ def register(request):
         if password1 == password2:
             if User.objects.filter(username=username).exists():
                 messages.info(request,'Username Taken')
-                return redirect('register')
+                return redirect('accounts:register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request,'Email Taken')
-                return redirect('register')
+                return redirect('accounts:register')
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email)
                 user.save()
                 print('user created')
-                return redirect('login')
+                return redirect('accounts:login')
         
         else:
             messages.info(request,'password not matching..')
-            return redirect('register')
-        return redirect('/')
+            return redirect('accounts:register')
+        # return redirect('/') this line is null as it does nothing
         
     else:
         return render(request,'register.html')

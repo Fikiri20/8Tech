@@ -5,237 +5,70 @@
     <div class="acad">
       <nav class="butto">
         <!-- Navigation bar with buttons to show different sections -->
-        <button onclick="showSection('homepage')">1ST YEAR</button>
-        <button onclick="showSection('about')">2ND YEAR</button>
-        <button onclick="showSection('services')">3RD YEAR</button>
-        <button onclick="showSection('contact')">4TH YEAR</button>
+        {% for section in sections %}
+          <button onclick="showSection('{{ section.id }}')">{{ section.name }}</button>
+        {% endfor %}
       </nav>
 
-      <div id="homepage" class="section active">
-        <h2>1ST YEAR - {{ course.course_name }}</h2>
+      {% for section in sections %}
+        <div id="{{ section.id }}" class="section {% if section.id == 'homepage' %}active{% endif %}">
+          <h2>{{ section.name }} - {{ course.course_name }}</h2>
 
-        <div class="sem2">
-          <h3>1st Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
+          <!-- Content for each section -->
+          <div class="sem2">
+            <h3>1st Sem Notes and Past Papers</h3>
+            <div class="btn">
+              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
+              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
+            </div>
+
+            <div class="files-dropdown-past">
+              {% for paper in past_papers %}
+                {% if paper.year == section.year and paper.sem == 1 %}
+                  <div>{{ paper.name }}</div>
+                  <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+
+            <div class="files-dropdown-notes">
+              {% for note in notes %}
+                {% if note.year == section.year and note.sem == 1 %}
+                  <div>{{ note.name }}</div>
+                  <a href="{% url 'download_note' file_id=note.id %}">download</a>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
 
-          {% comment %}remember to style this kindly to fit the general ui{% endcomment %}
+          <!-- Similar content for the 2nd semester -->
+          <div class="sem2">
+            <h3>2nd Sem Notes and Past Papers</h3>
+            <div class="btn">
+              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
+              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
+            </div>
 
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 1 and paper.sem == 1%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
+            <div class="files-dropdown-past">
+              {% for paper in past_papers %}
+                {% if paper.year == section.year and paper.sem == 2 %}
+                  <div>{{ paper.name }}</div>
+                  <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
+                {% endif %}
+              {% endfor %}
+            </div>
 
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 1 and note.sem == 1%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="sem2">
-          <h3>2nd Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers3()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes3()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 1 and paper.sem == 2%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 1 and note.sem == 2%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <div id="about" class="section">
-        <h2>2ND YEAR - {{ course.course_name }}</h2>
-
-        <div class="sem2">
-          <h3>1st Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 2 and paper.sem == 1%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 2 and note.sem == 1%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
+            <div class="files-dropdown-notes">
+              {% for note in notes %}
+                {% if note.year == section.year and note.sem == 2 %}
+                  <div>{{ note.name }}</div>
+                  <a href="{% url 'download_note' file_id=note.id %}">download</a>
+                {% endif %}
+              {% endfor %}
+            </div>
           </div>
         </div>
-
-        <div class="sem2">
-          <h3>2nd Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers2()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes2()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 2 and paper.sem == 2%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 2 and note.sem == 2%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <div id="services" class="section">
-        <h2>3RD YEAR - {{ course.course_name }}</h2>
-
-        <div class="sem2">
-          <h3>1st Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPaper()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNote()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 3 and paper.sem == 1%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 3 and note.sem == 1%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="sem2">
-          <h3>2nd Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers3b()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes3b()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 3 and paper.sem == 2%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 3 and note.sem == 2%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
-
-      <div id="contact" class="section">
-        <h2>4TH YEAR - {{ course.course_name }}</h2>
-
-        <div class="sem2">
-          <h3>1st Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers1()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes1()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 4 and paper.sem == 1%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 4 and note.sem == 1%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-
-        <div class="sem2 sem-section">
-          <h3>2nd Sem Notes and Past Papers</h3>
-          <div class="btn">
-            <button onclick="showPastPapers4()"><a href="#"><span></span>Exams</a></button>
-            <button onclick="showNotes4()"><a href="#"><span></span>Notes</a></button>
-          </div>
-
-          <div class="files-dropdown-past">
-            {% for paper in past_papers %}
-            {% if paper.year == 4 and paper.sem == 2%}
-              <div>{{ paper.name }}</div>
-              <a href="{% url 'download_pastpaper' file_id=paper.id %}">download</a>
-               {% endif %}
-            {% endfor %}
-          </div>
-
-          <div class="files-dropdown-notes">
-            {% for note in notes %}
-            {% if note.year == 4 and note.sem == 2%}
-              <div>{{ note.name }}</div>
-              <a href="{% url 'download_note' file_id=note.id %}">download</a>
-              {% endif %}
-            {% endfor %}
-          </div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
 
     <div class="course-description">
@@ -246,31 +79,20 @@
   </div>
 
   <script>
-    document.querySelector('.search-btn').onclick = function () {
-      var query = document.querySelector('.search-box').value
-      window.open('https://www.bing.com/search?q=' + encodeURIComponent(query))
-    }
-    
     // JavaScript function to show a section and hide others
     function showSection(sectionId) {
       // Hide all sections
       var sections = document.querySelectorAll('.section')
       sections.forEach(function (section) {
         section.classList.remove('active')
+        section.style.display = 'none' // Ensure sections are hidden
       })
     
       // Show the clicked section
       var sectionToShow = document.getElementById(sectionId)
       if (sectionToShow) {
         sectionToShow.classList.add('active')
-      }
-    
-      // If the 'Home' tab is not clicked, hide the homepage content
-      if (sectionId !== 'homepage') {
-        document.getElementById('homepage').style.display = 'none'
-      } else {
-        // If the 'Home' tab is clicked, show the homepage content
-        document.getElementById('homepage').style.display = 'block'
+        sectionToShow.style.display = 'block' // Ensure only the clicked section is shown
       }
     
       // Prevent scrolling to other sections
@@ -280,36 +102,33 @@
     // Call showSection with 'homepage' by default to show the homepage content
     showSection('homepage')
     
-    // Mathematics and Comp Sc sem1
-    // JavaScript functions to update the links
-    
+    // show the past_papers and notes
     function showNotesOrPastPapers(event) {
-      // Prevent default action if necessary
       event.preventDefault()
     
-      // Get the clicked button
-      const clickedButton = event.currentTarget
+      // Get the parent container of the clicked button
+      const parentContainer = event.target.closest('.sem2')
     
-      // Select sections
-      const notesSection = document.querySelector('.files-dropdown-notes')
-      const pastPaperSection = document.querySelector('.files-dropdown-past')
+      // Get the text content of the clicked button
+      const buttonText = event.target.textContent.trim()
     
-      // Check the text of the clicked button
-      const buttonText = clickedButton.querySelector('a').textContent.trim()
+      // Get references to the specific past papers and notes sections within the same parent container
+      const pastPapersSection = parentContainer.querySelector('.files-dropdown-past')
+      const notesSection = parentContainer.querySelector('.files-dropdown-notes')
     
+      // Toggle visibility based on the button text
       if (buttonText === 'Exams') {
-        // Show past papers section and hide notes section
-        pastPaperSection.style.display = 'flex'
+        pastPapersSection.style.display = 'flex'
         notesSection.style.display = 'none'
       } else if (buttonText === 'Notes') {
-        // Show notes section and hide past papers section
         notesSection.style.display = 'flex'
-        pastPaperSection.style.display = 'none'
-      } else {
-        // Hide both sections if neither is clicked
-        notesSection.style.display = 'none'
-        pastPaperSection.style.display = 'none'
+        pastPapersSection.style.display = 'none'
       }
     }
+    
+    // Initialize by hiding all sections (optional)
+    document.querySelectorAll('.files-dropdown-past, .files-dropdown-notes').forEach((section) => {
+      section.style.display = 'none'
+    })
   </script>
 {% endblock %}

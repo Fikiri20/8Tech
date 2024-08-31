@@ -17,7 +17,7 @@
 
             <span class="borderLine"></span>
 
-        <form action="register" method="post">
+        <form action="{% url 'accounts:register' %}" method="post">
             {% csrf_token %}
             <h2 style="color: white;">Sign up</h2>
 
