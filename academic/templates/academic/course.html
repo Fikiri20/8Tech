@@ -102,34 +102,33 @@
     // Call showSection with 'homepage' by default to show the homepage content
     showSection('homepage')
     
-    // JavaScript function to show notes or past papers
+    // show the past_papers and notes
     function showNotesOrPastPapers(event) {
-      // Prevent default action if necessary
       event.preventDefault()
     
-      // Get the clicked button
-      const clickedButton = event.currentTarget
+      // Get the parent container of the clicked button
+      const parentContainer = event.target.closest('.sem2')
     
-      // Select sections
-      const notesSection = document.querySelector('.files-dropdown-notes')
-      const pastPaperSection = document.querySelector('.files-dropdown-past')
+      // Get the text content of the clicked button
+      const buttonText = event.target.textContent.trim()
     
-      // Check the text of the clicked button
-      const buttonText = clickedButton.querySelector('a').textContent.trim()
+      // Get references to the specific past papers and notes sections within the same parent container
+      const pastPapersSection = parentContainer.querySelector('.files-dropdown-past')
+      const notesSection = parentContainer.querySelector('.files-dropdown-notes')
     
+      // Toggle visibility based on the button text
       if (buttonText === 'Exams') {
-        // Show past papers section and hide notes section
-        pastPaperSection.style.display = 'flex'
+        pastPapersSection.style.display = 'flex'
         notesSection.style.display = 'none'
       } else if (buttonText === 'Notes') {
-        // Show notes section and hide past papers section
         notesSection.style.display = 'flex'
-        pastPaperSection.style.display = 'none'
-      } else {
-        // Hide both sections if neither is clicked
-        notesSection.style.display = 'none'
-        pastPaperSection.style.display = 'none'
+        pastPapersSection.style.display = 'none'
       }
     }
+    
+    // Initialize by hiding all sections (optional)
+    document.querySelectorAll('.files-dropdown-past, .files-dropdown-notes').forEach((section) => {
+      section.style.display = 'none'
+    })
   </script>
 {% endblock %}
