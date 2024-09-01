@@ -85,7 +85,7 @@ def password_reset_request(request):
             return redirect("accounts:password_reset_done")
     else:
         form = ResetPasswordEmailCollection()
-    return render(request, "password_reset_form.html", {"form": form})
+    return render(request, "accounts/password_reset_form.html", {"form": form})
 
 
 def password_reset_confirm(request, uidb64=None, token=None):
@@ -111,7 +111,7 @@ def password_reset_confirm(request, uidb64=None, token=None):
                         form.add_error('password2', "Passwords do not match.")
             else:
                 form = PasswordResetForm()
-            return render(request, 'password_reset_confirm.html', {'form': form})
+            return render(request, 'accounts/password_reset_confirm.html', {'form': form})
         else:
             # Invalid link, show error or redirect
             return redirect('accounts:password_reset_invalid')
@@ -119,15 +119,15 @@ def password_reset_confirm(request, uidb64=None, token=None):
         # No uid or token, show error or redirect
         return redirect('accounts:password_reset_invalid')
     
-
+from django.shortcuts import render
 
 def password_reset_done(request):
-    return render(request, 'password_reset_done.html')
+    return render(request, 'accounts/password_reset_done.html')
 
 from django.shortcuts import render
 
 def password_reset_complete(request):
-    return render(request, 'password_reset_complete.html')
+    return render(request, 'accoounts/password_reset_complete.html')
 
 
 
