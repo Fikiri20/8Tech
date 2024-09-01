@@ -7,6 +7,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.models import User, auth
 from django.core.mail import send_mail
 from django.contrib.auth import update_session_auth_hash
+from .mailing import send_registration_email
 from .forms import ResetPasswordEmailCollection, PasswordResetForm
 
 # Create your views here.
@@ -46,6 +47,13 @@ def register(request):
             else:
                 user = User.objects.create_user(username=username, password=password1, email=email)
                 user.save()
+
+                context = {
+                    "username": username,
+                    "link": "8tech.pythonanywhere.html"
+                }
+
+                send_registration_email(to=email, subject="Account Creation", context=context)
                 print('user created')
                 return redirect('accounts:login')
         
