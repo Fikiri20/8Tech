@@ -197,3 +197,9 @@
   .box form input[type="submit"]:active{
     opacity:0.8;
   }
+
+  .log h3{
+
+    color: #fff;
+
+  }
