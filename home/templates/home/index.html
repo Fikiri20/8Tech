@@ -16,7 +16,7 @@
 {% endif %}
 
 <div class="log">
-    <img src="{% static "images\8logo.jpg" %}">
+    <a href="/admin"><img src="{% static 'images\8logo.jpg' %}"></a>
 </div>
 
 <div class="scroll-container">
@@ -36,7 +36,7 @@
 {% for slid in slide %}
 
  <div class="mySlides">
-  <img src="{{slid.slide_image.url}}" style="width:100%">
+  <img src="{{slid.slide_image.url}}">
   <h2>{{slid.slide_topic}}</h2>
 
  </div>
@@ -61,17 +61,11 @@
 <section id="sepa">
 
  <!--blog start -->
-<section id="blog" class="blog" >
     <div class="container">
-
         <div class="blog-content">
-            
-            <div class="row">
-
 
 {% for new in news %}
 
-                <div class="col-md-4 col-sm-6">
                     <div class="single-blog-item">
                         <div class="single-blog-item-img">
                         <img src="{{new.news_images.url}}">
@@ -79,18 +73,16 @@
                         <div class="single-blog-item-txt">
                             <h2><a href="#">{{new.news_topic}}</a></h2>
                             <hr>
-                            <h4>posted <span>by</span><a href="admin/">{{new.news_admin}}</a>{{new.posted_date}}</h4>
+                            <h4>posted <span>by </span><a href="admin/">{{new.news_admin}}</a>{{new.posted_date}}</h4>
                             <p>{{new.news_description}}</p>
                             <hr>
 
                         </div>
                     </div>
-                </div>
 
  {% endfor %}
 
  
-                <div class="col-md-4 col-sm-6">
                     <div class="single-blog-item">
                         <div class="single-blog-item-img">
                             <!-- Autoplay Video Section -->
@@ -108,14 +100,10 @@
                             <hr>
                         </div>
                     </div>
-                </div>
 
-            </div>
         </div>
     </div>
-    
-</section>
-<!--blog end -->
+    <!--blog end -->
 
 </section>
 
