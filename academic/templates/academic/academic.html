@@ -10,59 +10,67 @@
         </div>
       </form>
 
-      <div class="school">
-        <h2>Academic Resources</h2>
 
-        {% for school in schools %}
+      <div class="school">
+        <div class="accordion">
+
+          {% for school in schools %}
+          <!-- School start-->
+            <div class="accordion-item">
+                <div class="accordion-header">{{ school.school_name }}</div>
+                <div class="accordion-content">
+                    <div class="nested-accordion">
         
-          <button class="accordion">{{ school.school_name }}</button>
-          <div class="panel">
-            {% for department in departments %}
-              {% if department.school == school %}
-                <div class="dropdown">
-                  <button class="dropdown-button">{{ department.department_name }}</button>
-                  <div class="dropdown-content">
-                    {% for course in courses %}
-                      {% if course.department == department %}
-                        <a href="{% url 'course' course.course_name %}">{{ course.course_name }}</a>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
+                      {% for department in departments %}
+                      {% if department.school == school %}
+                   <!-- Department start-->
+                        <div class="nested-accordion-item">
+                            <div class="nested-accordion-header">{{ department.department_name }}</div>
+                            <div class="nested-accordion-content">
+                           {% for course in courses %}
+                              {% if course.department == department %}
+                                <p><a href="{% url 'course' course.course_name %}">{{ course.course_name }}</a></p>
+                              {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                   <!-- Department end-->
+                   {% endif %}
+                   {% endfor %}
+        
+                    </div>
                 </div>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% endfor %}
+            </div>
+          <!-- School end -->
+          {% endfor %}
+        
+        </div>
       </div>
-    </div>
+
 
     <script>
-      // Accordion functionality
-      var acc = document.getElementsByClassName('accordion')
-      for (var i = 0; i < acc.length; i++) {
-        acc[i].addEventListener('click', function () {
-          this.classList.toggle('active')
-          var panel = this.nextElementSibling
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null
-          } else {
-            panel.style.maxHeight = panel.scrollHeight + 'px'
-          }
-        })
-      }
-      
-      // Dropdown functionality
-      var dropdowns = document.getElementsByClassName('dropdown-button')
-      for (var i = 0; i < dropdowns.length; i++) {
-        dropdowns[i].addEventListener('click', function () {
-          var dropdownContent = this.nextElementSibling
-          if (dropdownContent.style.maxHeight && dropdownContent.style.maxHeight !== '0px') {
-            dropdownContent.style.maxHeight = '0px'
-          } else {
-            dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px'
-          }
-        })
-      }
+       // Function to toggle accordion content
+function toggleAccordionContent(header, content) {
+    header.addEventListener('click', function () {
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        header.classList.toggle('active');
+    });
+}
+
+// Main Accordion
+document.querySelectorAll('.accordion-item').forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    const content = item.querySelector('.accordion-content');
+    toggleAccordionContent(header, content);
+});
+
+// Nested Accordion
+document.querySelectorAll('.nested-accordion-item').forEach(item => {
+    const header = item.querySelector('.nested-accordion-header');
+    const content = item.querySelector('.nested-accordion-content');
+    toggleAccordionContent(header, content);
+});
+
     </script>
   </body>
 {% endblock %}
