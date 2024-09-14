@@ -18,8 +18,8 @@
           <div class="sem2">
             <h3>1st Sem Notes and Past Papers</h3>
             <div class="btn">
-              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
-              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
+              <button onclick="showNotesPast(event)"><a href="#"><span></span>Exams</a></button>
+              <button onclick="showNotesPast(event)"><a href="#"><span></span>Notes</a></button>
             </div>
 
             <div class="files-dropdown-past">
@@ -45,8 +45,8 @@
           <div class="sem2">
             <h3>2nd Sem Notes and Past Papers</h3>
             <div class="btn">
-              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Exams</a></button>
-              <button onclick="showNotesOrPastPapers(event)"><a href="#"><span></span>Notes</a></button>
+              <button onclick="showNotesPast(event)"><a href="#"><span></span>Exams</a></button>
+              <button onclick="showNotesPast(event)"><a href="#"><span></span>Notes</a></button>
             </div>
 
             <div class="files-dropdown-past">
@@ -103,7 +103,7 @@
     showSection('homepage')
     
     // show the past_papers and notes
-    function showNotesOrPastPapers(event) {
+    {% comment %} function showNotesOrPastPapers(event) {
       event.preventDefault()
     
       // Get the parent container of the clicked button
@@ -124,11 +124,33 @@
         notesSection.style.display = 'flex'
         pastPapersSection.style.display = 'none'
       }
-    }
+    } {% endcomment %}
     
     // Initialize by hiding all sections (optional)
-    document.querySelectorAll('.files-dropdown-past, .files-dropdown-notes').forEach((section) => {
+    {% comment %} document.querySelectorAll('.files-dropdown-past, .files-dropdown-notes').forEach((section) => {
       section.style.display = 'none'
-    })
+    }) {% endcomment %}
+
+  
+
+    function showNotesPast(event) {
+      const buttonText = event.target.textContent.trim();
+
+      const pastPaperSection = document.querySelector(".files-dropdown-past");
+      const notesSection = document.querySelector(".files-dropdown-notes");
+
+      if (buttonText === "Exams") {
+        pastPaperSection.classList.toggle('show')
+
+        if (notesSection.classList.includes('show')) {
+          notesSection.classList.toggle('show');
+        }
+      } else if (buttonText === "Notes") {
+        notesSection.classList.toggle('show');
+        if (pastPaperSection.classList.includes('show')) {
+          pastPaperSection.classList.toggle('show');
+        }
+      }
+    }
   </script>
 {% endblock %}

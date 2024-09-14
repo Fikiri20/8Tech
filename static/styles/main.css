@@ -554,6 +554,8 @@ display: block; /* Ensure that the text is below the icon */
   background-color: #7a7777;
 }
 
+
+
 }
 
 /*HOUSING
@@ -2125,3 +2127,39 @@ p{
 }
 
 }
+
+
+
+/* course notes and past dropdown  */
+
+/* 
+I put this here cause I couldn't figure out where to put it 
+in the general page display, You can add it where it is 
+supposed to be then let me know!
+ */
+
+.files-dropdown-past {
+  /* display: none; */
+  flex-direction: column;
+  align-items: center;
+  height: 0;
+  font-size: 1.25rem;
+  transition: height 0.5s ease-out;
+}
+.files-dropdown-notes {
+  /* display: none; */
+  flex-direction: column;
+  align-items: center;
+  height: 0;
+  font-size: 1.25rem;
+  transition: height 0.5s ease-out;
+
+}
+
+.files-dropdown-past.show {
+  height: max-content;
+}
+.files-dropdown-notes.show {
+  /* display: flex; */
+  height: max-content;
+} 
