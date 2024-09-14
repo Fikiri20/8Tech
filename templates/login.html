@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'styles/accounts.css' %}">
-		</head>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/accounts.css' %}" />
+  </head>
+  <body>
+    <div class="box">
+      <span class="borderLine"></span>
+      {% comment %}changed the action{% endcomment %}
+      <form action="{% url 'accounts:login' %}" method="post">
+        {% csrf_token %}
+        <h2 style="color: white;">Sign in</h2>
 
-        <div class="box">
-            <span class="borderLine"></span>
-{% comment %} changed the action {% endcomment %}
-        <form action="{% url 'accounts:login' %}" method="post"> 
-          {% csrf_token %}
-            <h2 style="color: white;">Sign in</h2>
+        <div class="inputBox">
+          <input type="text" required="required" name="username" />
+          <span>Username</span>
+          <i></i>
+        </div>
 
-            <div class="inputBox">
-                <input type="text" required="required" name="username">
-                <span>Username</span>
-                <i></i>
-              </div>
-
-              <div class="inputBox">
-                <input type="password" required="required" name="password">
-                <span>Password</span>
-                <i></i>
-              </div>
-
+        <div class="inputBox">
+          <input type="password" required="required" name="password" />
+          <span>Password</span>
+          <i></i>
+        </div>
               <div class="links">
                 <a href="{% url 'accounts:password_reset' %}">Forgot Password</a>
                 <a href="{% url 'accounts:register' %}">Signup</a>
@@ -44,4 +42,5 @@
     </div>
           
     </body>
+
 </html>
