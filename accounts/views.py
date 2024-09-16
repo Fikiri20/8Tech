@@ -50,7 +50,7 @@ def register(request):
 
                 context = {
                     "username": username,
-                    "link": "8tech.pythonanywhere.html"
+                    "link": "8tech.pythonanywhere.com"
                 }
 
                 send_registration_email(to=email, subject="Account Creation", context=context)

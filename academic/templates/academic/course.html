@@ -18,8 +18,8 @@
           <div class="sem2">
             <h3>1st Sem Notes and Past Papers</h3>
             <div class="btn">
-              <button onclick="showNotesPast(event)"><a href="#"><span></span>Exams</a></button>
-              <button onclick="showNotesPast(event)"><a href="#"><span></span>Notes</a></button>
+              <button class="toggle-past-btn"><a href="#"><span></span>Exams</a></button>
+              <button class="toggle-notes-btn"><a href="#"><span></span>Notes</a></button>
             </div>
 
             <div class="files-dropdown-past">
@@ -45,8 +45,8 @@
           <div class="sem2">
             <h3>2nd Sem Notes and Past Papers</h3>
             <div class="btn">
-              <button onclick="showNotesPast(event)"><a href="#"><span></span>Exams</a></button>
-              <button onclick="showNotesPast(event)"><a href="#"><span></span>Notes</a></button>
+              <button class="toggle-past-btn"><a href="#"><span></span>Exams</a></button>
+              <button class="toggle-notes-btn"><a href="#"><span></span>Notes</a></button>
             </div>
 
             <div class="files-dropdown-past">
@@ -79,78 +79,63 @@
   </div>
 
   <script>
-    // JavaScript function to show a section and hide others
     function showSection(sectionId) {
-      // Hide all sections
-      var sections = document.querySelectorAll('.section')
+      var sections = document.querySelectorAll('.section');
       sections.forEach(function (section) {
-        section.classList.remove('active')
-        section.style.display = 'none' // Ensure sections are hidden
-      })
-    
-      // Show the clicked section
-      var sectionToShow = document.getElementById(sectionId)
+        section.classList.remove('active');
+        section.style.display = 'none';
+      });
+
+      var sectionToShow = document.getElementById(sectionId);
       if (sectionToShow) {
-        sectionToShow.classList.add('active')
-        sectionToShow.style.display = 'block' // Ensure only the clicked section is shown
+        sectionToShow.classList.add('active');
+        sectionToShow.style.display = 'block';
       }
-    
-      // Prevent scrolling to other sections
-      window.scrollTo(0, 0)
+
+      window.scrollTo(0, 0);
     }
-    
-    // Call showSection with 'homepage' by default to show the homepage content
-    showSection('homepage')
-    
-    // show the past_papers and notes
-    {% comment %} function showNotesOrPastPapers(event) {
-      event.preventDefault()
-    
-      // Get the parent container of the clicked button
-      const parentContainer = event.target.closest('.sem2')
-    
-      // Get the text content of the clicked button
-      const buttonText = event.target.textContent.trim()
-    
-      // Get references to the specific past papers and notes sections within the same parent container
-      const pastPapersSection = parentContainer.querySelector('.files-dropdown-past')
-      const notesSection = parentContainer.querySelector('.files-dropdown-notes')
-    
-      // Toggle visibility based on the button text
-      if (buttonText === 'Exams') {
-        pastPapersSection.style.display = 'flex'
-        notesSection.style.display = 'none'
-      } else if (buttonText === 'Notes') {
-        notesSection.style.display = 'flex'
-        pastPapersSection.style.display = 'none'
-      }
-    } {% endcomment %}
-    
-    // Initialize by hiding all sections (optional)
-    {% comment %} document.querySelectorAll('.files-dropdown-past, .files-dropdown-notes').forEach((section) => {
-      section.style.display = 'none'
-    }) {% endcomment %}
 
-  
+    showSection('homepage');
 
-    function showNotesPast(event) {
-      const buttonText = event.target.textContent.trim();
+    function toggleSection(event, sectionClass) {
+      event.preventDefault();
 
-      const pastPaperSection = document.querySelector(".files-dropdown-past");
-      const notesSection = document.querySelector(".files-dropdown-notes");
+      const parentContainer = event.target.closest('.sem2');
+      const pastSection = parentContainer.querySelector(".files-dropdown-past");
+      const notesSection = parentContainer.querySelector(".files-dropdown-notes");
 
-      if (buttonText === "Exams") {
-        pastPaperSection.classList.toggle('show')
-
-        if (notesSection.classList.includes('show')) {
-          notesSection.classList.toggle('show');
-        }
-      } else if (buttonText === "Notes") {
-        notesSection.classList.toggle('show');
-        if (pastPaperSection.classList.includes('show')) {
-          pastPaperSection.classList.toggle('show');
-        }
+      if (sectionClass === 'past') {
+        toggleDropdown(pastSection, notesSection);
+      } else if (sectionClass === 'notes') {
+        toggleDropdown(notesSection, pastSection);
       }
     }
+
+    function toggleDropdown(showSection, hideSection) {
+      if (showSection.classList.contains('show')) {
+        showSection.classList.remove('show');
+        showSection.style.maxHeight = '0'; // Collapse it by setting maxHeight to 0
+        showSection.style.padding = '0'; // Collapse padding
+      } else {
+        showSection.classList.add('show');
+        showSection.style.maxHeight = 'max-content';
+        showSection.style.padding = '1rem'; // Add padding when expanded
+    
+        // Hide the other section
+        hideSection.classList.remove('show');
+        hideSection.style.maxHeight = '0'; // Ensure the other section is collapsed
+        hideSection.style.padding = '0'; // Collapse padding of the hidden section
+      }
+    }
+    
+    
+
+    document.querySelectorAll('.toggle-past-btn').forEach(button => {
+      button.addEventListener('click', (event) => toggleSection(event, 'past'));
+    });
+
+    document.querySelectorAll('.toggle-notes-btn').forEach(button => {
+      button.addEventListener('click', (event) => toggleSection(event, 'notes'));
+    });
   </script>
 {% endblock %}

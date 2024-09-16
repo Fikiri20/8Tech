@@ -17,8 +17,6 @@ def send_registration_email(*, to: str, subject: str, context: dict,):
     )
     email.body = html_content
     email.content_subtype = "html"
-
-
     email.send()
 
     
